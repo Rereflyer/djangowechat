@@ -16,3 +16,5 @@ def validate(request):
 		check_signature(token, signature, timestamp, nonce)
 	except InvalidSignatureException:
 		return HttpResponse(10)
+
+	return HttpResponse(request.GET.get('echostr', None))
