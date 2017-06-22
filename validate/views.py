@@ -8,9 +8,9 @@ from wechatpy.exceptions import InvalidSignatureException
 token = 'sfsfsfrereflyer'
 
 def validate(request):
-	signature = request.get('signature', None)
-	timestamp = request.get('timestamp', None)
-	nonce = request.get('nonce', None)
+	signature = request.GET('signature', None)
+	timestamp = request.GET('timestamp', None)
+	nonce = request.GET('nonce', None)
 
 	try:
 		check_signature(token, signature, timestamp, nonce)
