@@ -37,7 +37,7 @@ def index(request):
 
 def menu(request):
 	app_id = "wx5b39f2c756e6be62"
-	app_secret = "5deff779d96d0b38ba97abd2beda6837"
+	app_secret = "d90eefec2c863dd7e0d6aba4943aec5f"
 	client = WeChatClient(app_id, app_secret)
 	client.menu.create({
 		"button":[
