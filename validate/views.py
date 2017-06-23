@@ -6,6 +6,8 @@ from django.views.decorators.csrf import csrf_exempt
 from wechatpy import parse_message
 from wechatpy.replies import TextReply
 
+from wechatpy import WeChatClient
+
 # Create your views here.
 
 token = 'sfsfsfrereflyer'
@@ -29,3 +31,42 @@ def index(request):
 	reply = TextReply(content='text reply', message=msg)
 	xml = reply.render()
 	return HttpResponse(xml)
+
+def menu(request):
+	app_id = "wx5b39f2c756e6be62"
+	app_secret = "5deff779d96d0b38ba97abd2beda6837"
+	client = WeChatClient(app_id, app_secret)
+	client.menu.create({
+		"button":[
+			{
+				"type":"click",
+				"name":u"今日歌曲",
+				"key":"V1001_TODAY_MUSIC"
+			},
+			{
+				"type":"click",
+				"name":u"歌手简介",
+				"key":"V1001_TODAY_SINGER"
+			},
+			{
+				"name":u"菜单",
+				"sub_button":[
+					{
+						"type":"view",
+						"name":u"搜索",
+						"url":"http://www.soso.com/"
+					},
+					{
+						"type":"view",
+						"name":u"视频",
+						"url":"http://v.qq.com/"
+					},
+					{
+						"type":"click",
+						"name":u"赞一下我们",
+						"key":"V1001_GOOD"
+					}
+				]
+			}
+		]
+	})
